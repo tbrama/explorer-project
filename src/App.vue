@@ -34,7 +34,7 @@ const searchDebouncedFn = useDebounceFn(
     class="flex flex-col font-jakarta p-2 h-[100dvh] overflow-auto bg-ex-gray"
   >
     <div class="flex gap-2 items-center">
-      <!-- <img src="@/assets/logo.png" alt="" height="60" width="60" /> -->
+      <img src="@/assets/logo.png" alt="" height="60" width="60" />
       <p class="text-xl font-bold">Windows Explorer</p>
     </div>
     <div
