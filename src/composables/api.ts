@@ -35,6 +35,21 @@ export const useFetch = () => {
     dataSearch.value = await result.json();
   };
 
+  const resAddFolder = ref<null | ViewFolder>(null);
+  const addFolderApi = async (data: {
+    foldersName: string;
+    parentDir: number;
+  }) => {
+    const result = await fetch(`${baseUrl}/add-folder`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    resAddFolder.value = await result.json();
+  };
+
   const dataUpFile = ref<null | ViewFolder>(null);
   const upFileApi = async (data: any) => {
     const result = await fetch(`${baseUrl}/add-files`, {
@@ -74,5 +89,7 @@ export const useFetch = () => {
     upFileApi,
     resDelete,
     deleteApi,
+    resAddFolder,
+    addFolderApi,
   };
 };

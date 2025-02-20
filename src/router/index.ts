@@ -1,18 +1,18 @@
-import FolderView from '@/view/FolderView.vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import FolderView from "@/view/FolderView.vue";
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: FolderView,
       children: [
         {
           // UserProfile will be rendered inside User's <router-view>
           // when /user/:id/profile is matched
-          path: ':index',
+          path: ":index",
           component: FolderView,
         },
       ],
@@ -26,6 +26,6 @@ const router = createRouter({
     //   component: () => import('../views/AboutView.vue'),
     // },
   ],
-})
+});
 
-export default router
+export default router;

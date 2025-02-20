@@ -6,6 +6,8 @@ export const useFolderStore = defineStore("folder", () => {
   const search = ref("");
   const listSearch = ref(Array<Vfolder>());
   const path = ref("");
+  const parent = ref(0);
+  const listView = ref(Array<Vfolder>());
 
-  return { search, listSearch, path };
+  return { search, listSearch, path, parent, listView };
 });

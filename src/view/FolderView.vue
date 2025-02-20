@@ -26,10 +26,14 @@ const listExt = ref(
 
 const getFolder = async (n: number) => {
   isLoading.value = true;
+  folderStore.$state.parent = n;
   folderStore.$state.search = "";
   folderStore.$state.listSearch = Array();
   await listViewApi(n);
-  if (dataListView.value) folderStore.$state.path = dataListView.value.path;
+  if (dataListView.value) {
+    folderStore.$state.path = dataListView.value.path;
+    folderStore.$state.listView = dataListView.value.list;
+  }
   isLoading.value = false;
 };
 
@@ -37,16 +41,18 @@ const listFolder = computed(() => {
   if (folderStore.$state.listSearch.length)
     return folderStore.$state.listSearch;
   else {
-    if (dataListView.value) return dataListView.value.list;
+    return folderStore.$state.listView;
   }
-  return Array<Vfolder>();
 });
 
 watch(
   () => route.params.index,
   (newId, oldId) => {
-    if (newId) getFolder(+newId);
-    else getFolder(0);
+    if (newId) {
+      getFolder(+newId);
+    } else {
+      getFolder(0);
+    }
   },
   { immediate: true }
 );
@@ -190,7 +196,7 @@ const deleteFile = async () => {
 };
 
 onMounted(async () => {
-  // getFolder(0);
+  getFolder(0);
 });
 </script>
 
